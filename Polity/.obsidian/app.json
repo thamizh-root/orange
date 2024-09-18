@@ -1,0 +1,7 @@
+{
+  "readableLineLength": true,
+  "showIndentGuide": true,
+  "spellcheck": false,
+  "autoPairBrackets": true,
+  "autoPairMarkdown": true
+}
