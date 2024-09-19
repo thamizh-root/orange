@@ -13,8 +13,8 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "LeetCode.md",
-                "mode": "preview",
+                "file": "Algorithm.md",
+                "mode": "source",
                 "source": false
               }
             }
@@ -69,7 +69,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "0098431dd7c51963",
@@ -85,7 +86,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "LeetCode.md",
+                "file": "Algorithm.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +103,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "LeetCode.md",
+                "file": "Algorithm.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +126,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "LeetCode.md"
+                "file": "Algorithm.md"
               }
             }
           }
@@ -148,9 +149,9 @@
   },
   "active": "cdb25c778c66d6e2",
   "lastOpenFiles": [
-    "Algorithm.md",
     "Book of Error.md",
     "LeetCode.md",
+    "Algorithm.md",
     "Untitled",
     "Polity.md",
     "2024-09-18.md",

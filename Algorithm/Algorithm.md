@@ -8,7 +8,7 @@ How do you improve?
 1. **Devise** a plan for solving problems
 2. **Master** common problem solving patterns
 
-Problem Solving
+##### Problem Solving
 1. Understand the problem
 2. Explore concrete examples
 3. Break it down 
@@ -89,7 +89,139 @@ function charCount(str){
 7. How have other people solved this problem?
 
 
-Problem Solving Patterns:
-1. [[Book of Error#^690351|Frequency Counter]]
-2. [[Book of Error#^2e190a|Multiple Pointers]]
+##### Problem Solving Patterns:
+1. [[Book of Error#Frequency Counter|Frequency Counter]]
+2. [[Book of Error#Multiple Pointers|Multiple Pointers]]
 3. [[Book of Error#Sliding Window|Sliding Window]]
+4. Divide And Conquer
+##### Recursive:
+
+Once upon a time... Martin and Dragon.
+
+- Define what recursion is and how it can be used.
+- Understand the two essential components of a recursive function.
+- Visualize the call stack to better debug and understand recursive functions.
+- Use helper method recursion and pure recursion to solve more difficult problems.
+
+What is recursion? A process (a function in our case) that calls itself.
+
+Why do I need to know this? It's everywhere. 
+- JSON.parse / JSON.stringify
+- document.getElementById and DOM traversal algorithms
+- Object traversal
+- We will see it with more complex data structures
+- It's sometimes a cleaner alternative to iteration
+
+The call stack
+- It's a **stack** data structure - we'll talk about that later!
+- Any time a function is invoked it is placed (**pushed**) on the top of the call stack.
+- When JavaScript sees the **return** keyword or when the function ends, the compiler will remove (**pop**).
+
+```
+function takeShower(){
+    return "Showering!"
+}
+
+function eatBreakfast(){
+    let meal = cookFood()
+    return `Eating ${meal}`
+}
+
+function cookFood(){
+    let items = ["Oatmeal", "Eggs", "Protein Shake"]
+    return items[Math.floor(Math.random()*items.length)];
+}
+
+function wakeUp() {
+    takeShower()
+    eatBreakfast()
+    console.log("Ok ready to go to work!")
+}
+
+wakeUp()
+```
+
+Why do I care?
+- You're used to functions being pushed on the call stack and popped off when they are done.
+- When we write recursive functions, we keep pushing new functions onto the call stack.
+
+**Our first recursive function:**
+How recursive functions work? Invoke the same function with a different input until you reach your base case. What's base case? The condition when the recursive ends. So, **base case** and **different input** are two essential parts of recursive function.
+
+```
+function countDown(num){
+    if(num <= 0) {
+        console.log("All done!");
+        return;
+    }
+    console.log(num);
+    num--;
+    countDown(num);
+}
+
+countDown(3)
+```
+
+**Our second recursive function:**
+Can you spot the base case?
+Do you notice the different input?
+What would happen if we didn't return?
+
+```
+function sumRange(num){
+   if(num === 1) return 1;
+   return num + sumRange(num-1);
+}
+
+sumRange(4)
+```
+
+```
+function factorial(num){
+    if(num === 1) return 1;
+    return num * factorial(num-1);
+}
+factorial(5)
+```
+
+Helper method recursion:
+```
+function collectOddValues(arr){
+    let result = [];
+    function helper(helperInput){
+        if(helperInput.length === 0) {
+            return;
+        }
+        if(helperInput[0] % 2 !== 0){
+            result.push(helperInput[0])
+        }
+        helper(helperInput.slice(1))
+    }
+    helper(arr)
+    return result;
+}
+
+collectOddValues([1,2,3,4,5,6,7,8,9])
+```
+
+Pure recursion:
+```
+function collectOddValues(arr){
+    let newArr = [];
+    if(arr.length === 0) {
+        return newArr;
+    }
+
+    if(arr[0] % 2 !== 0){
+        newArr.push(arr[0]);
+    }
+    newArr = newArr.concat(collectOddValues(arr.slice(1)));
+    return newArr;
+}
+
+collectOddValues([1,2,3,4,5])
+```
+
+- For arrays, use methods like slice, spread operators and concat that make copies of arrays so you don't not mutate them.
+- Remember that strings are immutable so you will need to use methods like slice, substr or substring to make copies of strings.
+- To make copies of objects use Object.assign or spread operator.
