@@ -69,8 +69,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "0098431dd7c51963",
@@ -150,8 +149,8 @@
   "active": "cdb25c778c66d6e2",
   "lastOpenFiles": [
     "Book of Error.md",
-    "LeetCode.md",
     "Algorithm.md",
+    "LeetCode.md",
     "Untitled",
     "Polity.md",
     "2024-09-18.md",

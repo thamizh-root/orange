@@ -215,7 +215,7 @@ function collectOddValues(arr){
     if(arr[0] % 2 !== 0){
         newArr.push(arr[0]);
     }
-    newArr = newArr.concat(collectOddValues(arr.slice(1)));
+    newArr = newArr.concat(collectOddValues(arr.slice(1))); // difference between splice(1) and slice(1)
     return newArr;
 }
 
@@ -225,3 +225,104 @@ collectOddValues([1,2,3,4,5])
 - For arrays, use methods like slice, spread operators and concat that make copies of arrays so you don't not mutate them.
 - Remember that strings are immutable so you will need to use methods like slice, substr or substring to make copies of strings.
 - To make copies of objects use Object.assign or spread operator.
+
+Practice Recursive:
+1. **Power Calculation**: Write a recursive function that takes in two integers, `base` and `exponent`, and returns the result of raising the base to the exponent (i.e., `base^exponent`).
+2. **Factorial**: Write a recursive function to calculate the factorial of a number `n`, where `factorial(n)` is `n * (n-1) * ... * 1`, and `factorial(0)` is `1`.
+3. **Product of Array**: Write a recursive function that takes an array of numbers and returns the product of all the numbers in the array.
+4. **Recursive Range**: Write a recursive function that calculates the sum of all numbers from `0` up to a given number `n`.
+5. **Fibonacci**: Write a recursive function that returns the nth number in the Fibonacci sequence, where the first two numbers are 1 and 1, and each subsequent number is the sum of the previous two.
+6. **Reverse**: Write a recursive function that takes a string and returns the string reversed.
+7. **Is Palindrome**: Write a recursive function that checks if a given string is a palindrome (a word that reads the same forwards and backwards).
+8. **Some Recursive**: Write a recursive function that takes an array and a callback, and returns `true` if any value in the array returns `true` when passed to the callback.
+9. **Flatten**: Write a recursive function that flattens an array of arrays into a single array.
+10. **Capitalize First**: Write a recursive function that takes an array of strings and capitalizes the first letter of each string.
+11. **Nested Even Sum**: Write a recursive function that takes an object and returns the sum of all the even numbers in the object, which may contain nested objects.
+12. **Capitalize Words**: Write a recursive function that capitalizes all words in an array.
+13. **Stringify Numbers**: Write a recursive function that takes an object and finds all of the values that are numbers and converts them to strings.
+14. **Collect Strings**: Write a recursive function that takes an object and returns an array of all the string values present inside the object.
+
+
+**Power Calculation**: Write a recursive function that takes in two integers, `base` and `exponent`, and returns the result of raising the base to the exponent (i.e., `base^exponent`).
+
+Wrong Solution
+```
+// **Power Calculation**: Write a recursive function that takes in two integers, `base` and `exponent`, and returns the result of raising the base to the exponent (i.e., `base^exponent`).
+
+// find base ^ exponent using recursive
+// input - two integers - base and exponent
+// base ^ exponent
+// variables we might need base, exponent
+
+// base case - if 1 return 1;
+// different input - n - 1
+
+// findExpo(base, exponent)
+// if 1 return 1;
+// return 1 ^ findExpo(base, exponent - 1)
+// 
+// 
+
+function findExpo(base, exponent) {
+    //base case 
+    if (exponent == 1) {
+        return 1;           // this is bad base case
+    }
+    return base ^ findExpo(base, exponent - 1);   // should be using *, not ^
+}
+
+let result = findExpo(2, 3);
+console.log(" --- result --- ", result);
+```
+
+There are two issues with above code:
+1. **Incorrect base case**: The base case `if (exponent == 1)` is wrong. In an exponentiation function, when the exponent reaches `0`, the result should be `1`, not when it reaches `1`. For example, `2^0 = 1`, and `2^1 = 2`.
+2. **Incorrect operator**: The operator `^` in JavaScript is a bitwise XOR, not exponentiation. For exponentiation, you should use `*` to multiply the base recursively, or use the `**` operator for direct exponentiation.
+
+Good Solution
+```
+function findExpo(base, exponent) {
+     if (exponent === 0) {
+        return 1;
+    }
+    return base * findExpo(base, exponent - 1);
+}
+let result = findExpo(2, 3);
+```
+
+
+**Product of Array**: Write a recursive function that takes an array of numbers and returns the product of all the numbers in the array.
+
+```
+function multiply(arr) {
+    if (arr.length == 0) {
+        return 1;
+    }
+    return arr[0] * multiply(arr.slice(1));
+}
+let x = multiply([1, 2, 1, 2]);
+console.log('Product of all the elements in the given array:', x);
+```
+
+```
+1 * multiply([2, 1, 2])
+    2 * multiply([1, 2])
+        1 * multiply([2])
+            2 * multiply([])
+                return 1
+```
+
+**Recursive Range**: Write a recursive function that calculates the sum of all numbers from `0` up to a given number `n`.
+
+```
+function addEverything(num) {
+    if (num === 0) {
+        return 0; // base case: when num is 0, return 0
+    }
+    
+    return num + addEverything(num - 1); // recursive call
+}
+
+let x = addEverything(5);
+console.log('Added all the numbers from 0 to the given num: ', x);
+```
